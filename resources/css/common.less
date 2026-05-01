@@ -1005,6 +1005,117 @@ input:focus, textarea:focus, select:focus {
 }
 
 // ==========================================
+// Swal2 弹窗统一美化与暗色适配
+// ==========================================
+.swal2-popup {
+    background: var(--modal-bg) !important;
+    border: 1px solid var(--modal-border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15), 0 8px 20px rgba(0,0,0,0.08) !important;
+    color: var(--text-primary) !important;
+    padding: 1.5rem !important;
+}
+
+.swal2-title {
+    color: var(--text-primary) !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    padding: 0 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.swal2-html-container {
+    color: var(--text-secondary) !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5rem !important;
+    padding: 0 !important;
+}
+
+.swal2-input,
+.swal2-select,
+.swal2-textarea {
+    background: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-primary) !important;
+    border-radius: 12px !important;
+    margin-top: 0.5rem !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+    outline: none !important;
+}
+
+.swal2-input:focus,
+.swal2-select:focus,
+.swal2-textarea:focus {
+    border-color: rgba(16, 185, 129, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+.swal2-validation-message {
+    background: rgba(239, 68, 68, 0.08) !important;
+    border: 1px solid rgba(239, 68, 68, 0.15) !important;
+    border-radius: 12px !important;
+    color: #ef4444 !important;
+    margin-top: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+}
+
+.swal2-actions {
+    margin-top: 1.5rem !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+}
+
+@media (min-width: 640px) {
+    .swal2-actions {
+        justify-content: flex-end !important;
+    }
+}
+
+@media (max-width: 639px) {
+    .swal2-actions {
+        justify-content: stretch !important;
+    }
+    .swal2-confirm,
+    .swal2-cancel {
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
+    }
+}
+
+.swal2-confirm,
+.swal2-cancel {
+    border-radius: 8px !important;
+    padding: 0.625rem 1.25rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.swal2-confirm {
+    background: linear-gradient(135deg, #059669, #0d9488) !important;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3) !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.swal2-confirm:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4) !important;
+}
+
+.swal2-cancel {
+    background: var(--panel-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+}
+
+.swal2-cancel:hover {
+    background: var(--content-surface) !important;
+}
+
+// ==========================================
 // 分隔符
 // ==========================================
 .divider {

@@ -124,114 +124,113 @@
                     </div>
                 </div>
             </form>
-        </div>
 
-        @if($showOauthSection)
-            <div class="mt-8 w-full">
-                <div class="mb-5 flex items-start gap-3">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, rgba(16,185,129,0.14), rgba(13,148,136,0.14)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);">
-                        <i class="fas fa-shield-alt text-sm" style="color: #059669;"></i>
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-lg text-slate-800 leading-none">OAuth 账号绑定</h2>
-                        <p class="mt-2 text-sm text-slate-400">绑定后可直接使用 {{ $oauthProviderName }} 快捷登录当前账号。</p>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden" style="background: var(--panel-bg-strong); border: 1px solid var(--border-strong); box-shadow: var(--card-shadow);">
-                    <div class="px-6 py-5 space-y-4">
-                    @if($oauthError)
-                        <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                            {{ $oauthError }}
+            @if($showOauthSection)
+                <div class="mt-8 w-full">
+                    <div class="mb-5 flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, rgba(16,185,129,0.14), rgba(13,148,136,0.14)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);">
+                            <i class="fas fa-shield-alt text-sm" style="color: #059669;"></i>
                         </div>
-                    @elseif($oauthEnabled && ! $oauthTableExists)
-                        <div class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
-                            OAuth 数据表不存在，请先执行数据库迁移后再使用账号绑定功能。
+                        <div>
+                            <h2 class="font-bold text-lg text-slate-800 leading-none">OAuth 账号绑定</h2>
+                            <p class="mt-2 text-sm text-slate-400">绑定后可直接使用 {{ $oauthProviderName }} 快捷登录当前账号。</p>
                         </div>
-                    @endif
+                    </div>
 
-                    @if($hasOauthAccount)
-                        <div class="space-y-3">
-                            @foreach($oauthAccounts as $account)
-                                <div class="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4 sm:px-5" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);">
-                                    <div class="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-6">
-                                        <div class="min-w-0 flex items-start gap-3.5 sm:items-center">
-                                            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white" style="background: linear-gradient(135deg, #059669, #0d9488); box-shadow: 0 6px 18px rgba(16,185,129,0.22);">
-                                                <i class="fas fa-link text-sm"></i>
-                                            </span>
-                                            <div class="min-w-0 flex-1">
-                                                <div class="flex flex-wrap items-center gap-2.5">
-                                                    <p class="truncate text-sm font-semibold text-slate-700">{{ $oauthProviderName }}</p>
-                                                    <span class="inline-flex items-center rounded-full bg-emerald-50 px-3.5 py-1 text-[11px] font-semibold text-emerald-600">已绑定</span>
+                    <div class="rounded-2xl overflow-hidden" style="background: var(--panel-bg-strong); border: 1px solid var(--border-strong); box-shadow: var(--card-shadow);">
+                        <div class="px-6 py-5 space-y-4">
+                        @if($oauthError)
+                            <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                                {{ $oauthError }}
+                            </div>
+                        @elseif($oauthEnabled && ! $oauthTableExists)
+                            <div class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+                                OAuth 数据表不存在，请先执行数据库迁移后再使用账号绑定功能。
+                            </div>
+                        @endif
+
+                        @if($hasOauthAccount)
+                            <div class="space-y-3">
+                                @foreach($oauthAccounts as $account)
+                                    <div class="rounded-2xl px-4 py-4 sm:px-5 transition-all duration-200 hover:shadow-md" style="background: var(--panel-bg); border: 1px solid var(--border-color);">
+                                        <div class="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-6">
+                                            <div class="min-w-0 flex items-start gap-3.5 sm:items-center">
+                                                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white" style="background: linear-gradient(135deg, #059669, #0d9488); box-shadow: 0 6px 18px rgba(16,185,129,0.22);">
+                                                    <i class="fas fa-link text-sm"></i>
+                                                </span>
+                                                <div class="min-w-0 flex-1">
+                                                    <div class="flex flex-wrap items-center gap-2.5">
+                                                        <p class="truncate text-[15px] font-semibold text-slate-700">{{ $oauthProviderName }}</p>
+                                                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-600">
+                                                            <i class="fas fa-check-circle text-[10px] mr-1"></i>
+                                                            <span>已绑定</span>
+                                                        </span>
+                                                    </div>
+                                                    <p class="mt-1 truncate text-sm text-slate-500 sm:text-[15px]">{{ $account->provider_user_name ?: $account->provider_user_id }}</p>
+                                                    @if($account->provider_user_email)
+                                                        <p class="mt-1 truncate text-xs text-slate-400 sm:text-sm">{{ $account->provider_user_email }}</p>
+                                                    @endif
                                                 </div>
-                                                <p class="mt-1 truncate text-sm text-slate-500 sm:text-[15px]">{{ $account->provider_user_name ?: $account->provider_user_id }}</p>
-                                                @if($account->provider_user_email)
-                                                    <p class="mt-1 truncate text-xs text-slate-400 sm:text-sm">{{ $account->provider_user_email }}</p>
-                                                @endif
+                                            </div>
+
+                                            <div class="flex w-full items-center justify-end md:w-auto md:shrink-0">
+                                                <button type="button" onclick="unbindOAuth({{ $account->id }})"
+                                                    class="inline-flex w-full items-center justify-center gap-1.5 py-2 px-5 text-sm font-semibold rounded-lg text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 sm:w-auto"
+                                                    style="background: linear-gradient(135deg, #059669, #0d9488); box-shadow: 0 2px 10px rgba(16,185,129,0.3);">
+                                                    <i class="fas fa-unlink text-xs"></i>
+                                                    <span>解绑账号</span>
+                                                </button>
                                             </div>
                                         </div>
-
-                                        <div class="flex w-full items-center justify-end md:w-auto md:shrink-0">
-                                            <button type="button" onclick="unbindOAuth({{ $account->id }})"
-                                                class="inline-flex w-full items-center justify-center gap-1.5 py-2 px-5 text-sm font-semibold rounded-lg text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 sm:w-auto"
-                                                style="background: linear-gradient(135deg, #059669, #0d9488); box-shadow: 0 2px 10px rgba(16,185,129,0.3);">
-                                                <i class="fas fa-unlink text-xs"></i>
-                                                <span>解绑账号</span>
-                                            </button>
-                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    @elseif(! $oauthEnabled)
-                        <div class="rounded-2xl border border-slate-200 bg-slate-50/80 px-5 py-6 text-center text-sm text-slate-400">
-                            站点管理员已关闭 OAuth 登录功能。
-                        </div>
-                    @elseif(! $oauthTableExists)
-                        <div class="rounded-2xl border border-slate-200 bg-slate-50/80 px-5 py-6 text-center text-sm text-slate-400">
-                            完成数据库迁移后即可在这里绑定 OAuth 账号。
-                        </div>
-                    @else
-                        <x-no-data message="暂未绑定 OAuth 账号，绑定后可使用快捷登录" />
-                    @endif
-                </div>
+                                @endforeach
+                            </div>
+                        @elseif(! $oauthEnabled)
+                            <div class="rounded-2xl px-5 py-6 text-center text-sm text-slate-400" style="background: var(--panel-bg); border: 1px solid var(--border-color);">
+                                站点管理员已关闭 OAuth 登录功能。
+                            </div>
+                        @elseif(! $oauthTableExists)
+                            <div class="rounded-2xl px-5 py-6 text-center text-sm text-slate-400" style="background: var(--panel-bg); border: 1px solid var(--border-color);">
+                                完成数据库迁移后即可在这里绑定 OAuth 账号。
+                            </div>
+                        @else
+                            <x-no-data message="暂未绑定 OAuth 账号，绑定后可使用快捷登录" />
+                        @endif
+                    </div>
 
-                <div class="px-6 py-4" style="background: var(--card-header-bg); border-top: 1px solid var(--border-strong);">
-                    @if($hasOauthAccount)
-                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                            <p class="text-xs leading-6 text-slate-500 sm:flex-1 sm:text-sm">每个账户仅支持绑定一个 OAuth 账号，如需更换请先解绑当前账号。</p>
-                            <span class="inline-flex w-full shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700 sm:w-auto sm:px-5">
-                                <i class="fas fa-check-circle"></i>
-                                <span>已绑定</span>
-                            </span>
-                        </div>
-                    @elseif(! $oauthEnabled)
-                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                            <p class="text-xs text-slate-500 sm:text-sm">启用后可在此绑定第三方账号并使用快捷登录。</p>
-                            <span class="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-500 sm:w-auto">
-                                <i class="fas fa-ban"></i>
-                                <span>暂不可用</span>
-                            </span>
-                        </div>
-                    @elseif(! $oauthTableExists)
-                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                            <p class="text-xs text-amber-600 sm:text-sm">请先执行数据库迁移，完成后即可绑定 OAuth 账号。</p>
-                            <span class="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-700 sm:w-auto">
-                                <i class="fas fa-tools"></i>
-                                <span>等待迁移</span>
-                            </span>
-                        </div>
-                    @else
-                        <div class="flex justify-end">
-                            <a href="{{ route('oauth.bind.redirect') }}" class="inline-flex w-full items-center justify-center gap-1.5 py-2.5 px-5 text-sm font-semibold rounded-lg text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 sm:w-auto" style="background: linear-gradient(135deg, #059669, #0d9488); box-shadow: 0 2px 10px rgba(16,185,129,0.3);">
-                                <i class="fas fa-plus"></i>
-                                <span>绑定账号</span>
-                            </a>
-                        </div>
-                    @endif
+                    <div class="px-6 py-4" style="background: var(--card-header-bg); border-top: 1px solid var(--border-strong);">
+                        @if($hasOauthAccount)
+                            <div class="flex items-center">
+                                <p class="text-xs leading-6 text-slate-500 sm:text-sm">每个账户仅支持绑定一个 OAuth 账号，如需更换请先解绑当前账号。</p>
+                            </div>
+                        @elseif(! $oauthEnabled)
+                            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                <p class="text-xs text-slate-500 sm:text-sm">启用后可在此绑定第三方账号并使用快捷登录。</p>
+                                <span class="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-500 sm:w-auto">
+                                    <i class="fas fa-ban"></i>
+                                    <span>暂不可用</span>
+                                </span>
+                            </div>
+                        @elseif(! $oauthTableExists)
+                            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                <p class="text-xs text-amber-600 sm:text-sm">请先执行数据库迁移，完成后即可绑定 OAuth 账号。</p>
+                                <span class="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-700 sm:w-auto">
+                                    <i class="fas fa-tools"></i>
+                                    <span>等待迁移</span>
+                                </span>
+                            </div>
+                        @else
+                            <div class="flex justify-end">
+                                <a href="{{ route('oauth.bind.redirect') }}" class="inline-flex w-full items-center justify-center gap-1.5 py-2.5 px-5 text-sm font-semibold rounded-lg text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 sm:w-auto" style="background: linear-gradient(135deg, #059669, #0d9488); box-shadow: 0 2px 10px rgba(16,185,129,0.3);">
+                                    <i class="fas fa-plus"></i>
+                                    <span>绑定账号</span>
+                                </a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
+        </div>
     </div>
 
     @push('scripts')
@@ -266,25 +265,27 @@
                     reverseButtons: true,
                     buttonsStyling: false,
                     customClass: {
-                        popup: 'rounded-[24px] border border-slate-200 shadow-2xl px-2 sm:px-3',
-                        title: 'text-slate-800 text-xl font-bold',
-                        htmlContainer: 'text-sm text-slate-500 leading-6',
-                        input: 'mt-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20',
-                        validationMessage: 'mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700',
+                        popup: 'rounded-2xl shadow-2xl px-2 sm:px-3',
+                        title: 'text-xl font-bold',
+                        htmlContainer: 'text-sm leading-6',
+                        input: 'mt-2 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20',
+                        validationMessage: 'mt-3 rounded-xl px-4 py-3 text-sm',
                         actions: 'mt-6 flex w-full flex-col-reverse gap-3 sm:flex-row sm:justify-end',
                         confirmButton: 'inline-flex items-center justify-center rounded-lg py-2.5 px-5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-emerald-500/50',
-                        cancelButton: 'inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white py-2.5 px-5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-50'
+                        cancelButton: 'inline-flex items-center justify-center rounded-lg py-2.5 px-5 text-sm font-semibold transition-all duration-200 focus:outline-none'
                     },
                     showLoaderOnConfirm: true,
                     didOpen: () => {
-                        const popup = Swal.getPopup();
-                        if (popup) {
-                            popup.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.98))';
-                        }
                         const confirmButton = Swal.getConfirmButton();
                         if (confirmButton) {
                             confirmButton.style.background = 'linear-gradient(135deg, #059669, #0d9488)';
                             confirmButton.style.boxShadow = '0 2px 10px rgba(16,185,129,0.3)';
+                        }
+                        const cancelButton = Swal.getCancelButton();
+                        if (cancelButton) {
+                            cancelButton.style.background = 'var(--panel-bg)';
+                            cancelButton.style.border = '1px solid var(--border-color)';
+                            cancelButton.style.color = 'var(--text-secondary)';
                         }
                     },
                     preConfirm: (password) => {
